@@ -7,9 +7,34 @@
 //
 
 #include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string longestString = "";
+        int pass;
+        for(int i=0;i<strs[0].length();i++){
+            pass = 0;
+            string checkString = strs[0].substr(0,strs[0].length()-i);
+            for(int k=1;k<strs.size();k++){
+                if(strs[k].substr(0,strs[0].length()-i) == checkString){
+                    pass++;
+                }
+            }
+            if(pass == strs.size()-1){
+                longestString = checkString;
+                break;
+            }
+        }
+        return longestString;
+    }
+};
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    vector<string> strs = {"flower","flow","flight"};
+    Solution solution;
+    cout<<solution.longestCommonPrefix(strs)<<endl;
     return 0;
 }
